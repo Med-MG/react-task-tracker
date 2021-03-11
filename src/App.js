@@ -3,6 +3,9 @@ import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 import { useState } from 'react'
 const App = () => {
+
+  const  [ShowAddTask, setShowAddTask] = useState(false)
+
   const [tasks, setTasks] = useState([
     {
         id: 1,
@@ -39,12 +42,15 @@ const addTask = (task) => {
    setTasks(
      tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task)
    )
-   
+ }
+ //Activate Show Add task
+ const ShowTaskForm = () => {
+   setShowAddTask(!ShowAddTask)
  }
   return (
     <div className="container">
-      <Header title='task tracker' />
-      <AddTask addTask= {addTask} />
+      <Header title='task tracker' ShowTaskForm={ShowTaskForm} ShowAdd={ShowAddTask} />
+      { ShowAddTask && <AddTask addTask= {addTask} />}
        { tasks.length > 0 ? <Tasks tasks={tasks} onDelete= {DeleteTask} onToggle= {onToggle} /> : 'No tasks to show'}
     </div>
   )
