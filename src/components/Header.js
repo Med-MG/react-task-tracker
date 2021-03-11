@@ -7,7 +7,7 @@ const Header = ({title}) => {
         console.log("Clicked");
     }
     return (
-        <header>
+        <header className='header'>
             <h1>{title}</h1>
             <Button  onClick={onClick} color="green" text="add" />
         </header>
